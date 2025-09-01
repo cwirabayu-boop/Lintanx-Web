@@ -1,0 +1,60 @@
+<!-- Main/Home Page Component -->
+<div id="mainPage">
+    <header class="hero-background">
+        <div class="relative z-10 flex flex-col items-center justify-center w-full max-w-4xl px-4 mx-auto pt-24">
+            
+            <!-- No Results Card -->
+            <div id="noResultsCard" class="hidden">
+                <h2 class="text-xl font-semibold mb-2">Maaf, data yang Anda minta belum tersedia</h2>
+                <p style="color: var(--color-text-dark);">Silakan coba pencarian lain.</p>
+            </div>
+
+            <!-- Hero Title -->
+            <h1 class="mb-8 text-5xl font-bold md:text-6xl lg:text-7xl" style="color: var(--color-hero-text);">
+                Layanan Informasi Tumbuhan Ekspor
+            </h1>
+
+            <!-- Main Search Bar -->
+            <div id="searchBarContainer" class="flex items-center w-full max-w-3xl p-3 mb-8 rounded-full shadow-lg">
+                
+                <!-- Country Input -->
+                <div class="search-bar-item">
+                    <input type="text" id="inputNegara" class="search-input-with-button" 
+                           placeholder="Pilih negara tujuan" readonly>
+                    <button class="dropdown-toggle-button" id="toggleNegaraDropdown">&#9660;</button>
+                    <div class="dropdown-content" id="negaraDropdownContent">
+                        <!-- Country dropdown items will be loaded here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="h-8 w-px bg-gray-300 mx-2"></div>
+
+                <!-- Product Input -->
+                <div class="search-bar-item">
+                    <input type="text" id="inputProduk" class="search-input-with-button" 
+                           placeholder="Pilih produk ekspor" readonly>
+                    <button class="dropdown-toggle-button" id="toggleProdukDropdown">&#9660;</button>
+                    <div class="dropdown-content" id="produkDropdownContent">
+                        <!-- Product dropdown items will be loaded here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <button id="tombolCari" class="flex-shrink-0 px-6 py-3 text-white font-semibold rounded-full focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                        style="background-color: var(--color-accent-button);">
+                    Telusuri
+                </button>
+            </div>
+
+        </div>
+    </header>
+    
+    <!-- Main Content Area -->
+    <main class="container p-8 mx-auto">
+        <!-- Future content can be added here if needed -->
+    </main>
+</div>
+
+
+

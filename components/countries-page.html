@@ -1,0 +1,49 @@
+<!-- Countries Page Component -->
+<div id="negaraTujuanPage" class="hidden-page content-page-background">
+    <div class="container mx-auto px-4 py-8">
+        
+        <!-- Breadcrumbs -->
+        <nav class="mb-6 text-sm" style="color: var(--color-text-dark);">
+            <a href="#" id="breadcrumbHomeNegara" class="hover:underline">Home</a> &gt;
+            <span id="breadcrumbCurrentNegara" class="font-semibold">Negara Tujuan</span>
+        </nav>
+
+        <!-- Page Header -->
+        <h1 class="text-3xl font-bold mb-2" style="color: var(--color-text-dark);">Negara Tujuan Ekspor</h1>
+        <p class="mb-8" style="color: var(--color-text-dark);">
+            Berikut ini informasi syarat mutu dan aturan teknis ekspor berdasarkan negara.
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <!-- Filter Sidebar -->
+            <div class="w-full md:w-1/4 p-6 rounded-lg shadow-md transparent-content-card">
+                <button id="filterSemuaNegara" 
+                        class="w-full text-left py-2 px-4 rounded-lg text-white font-semibold mb-2 transition-colors"
+                        style="background-color: var(--color-accent-button);">
+                    Semua Negara
+                </button>
+                <ul class="space-y-1">
+                    <li><a href="#" id="filterAsia" class="block py-2 px-4 hover:bg-opacity-20 rounded-lg" style="color: var(--color-text-dark);">Asia</a></li>
+                    <li><a href="#" id="filterUniEropa" class="block py-2 px-4 hover:bg-opacity-20 rounded-lg" style="color: var(--color-text-dark);">Uni Eropa</a></li>
+                    <li><a href="#" id="filterGcc" class="block py-2 px-4 hover:bg-opacity-20 rounded-lg" style="color: var(--color-text-dark);">GCC (Arab Teluk)</a></li>
+                    <li><a href="#" id="filterUee" class="block py-2 px-4 hover:bg-opacity-20 rounded-lg" style="color: var(--color-text-dark);">UEE (Eurasia)</a></li>
+                    <li><a href="#" id="filterLainnya" class="block py-2 px-4 hover:bg-opacity-20 rounded-lg" style="color: var(--color-text-dark);">Lainnya</a></li>
+                </ul>
+            </div>
+
+            <!-- Countries Grid -->
+            <div class="w-full md:w-3/4">
+                <h2 id="daftarNegaraTitle" class="text-xl font-semibold mb-4" style="color: var(--color-text-dark);">
+                    Semua Negara
+                </h2>
+                <div id="daftarNegaraFiltrasi" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4">
+                    <!-- Country cards will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,777 @@
+/* ========================================================= */
+/* Definisi Variabel Warna - Palet Kustom "Inked" */
+/* ========================================================= */
+:root {
+    --color-black: #000000;
+    --color-light-gray: #DFDEDC; /* Abu-abu Sangat Terang */
+    --color-dark-gray: #464545; /* Abu-abu Gelap */
+    --color-teal-accent: #00ACAC; /* Aksen Teal */
+    --color-medium-gray: #A6A7A2; /* Abu-abu Sedang */
+
+    /* Mappings untuk penggunaan di aplikasi, disesuaikan dengan palet baru */
+    --color-primary-dark: var(--color-dark-gray); /* Dark Gray untuk navbar, footer, elemen utama */
+    --color-accent-button: var(--color-teal-accent); /* Teal Accent untuk tombol, aksen interaktif */
+    --color-light-bg: var(--color-light-gray); /* Light Gray untuk latar belakang transparan area konten */
+    --color-light-bg-solid: #FFFFFF; /* Putih untuk kartu dan notifikasi (sesuai permintaan sebelumnya) */
+    --color-text-dark: var(--color-black); /* Hitam untuk teks pada latar belakang terang (menjamin kontras) */
+    --color-text-light: white; /* Putih untuk teks pada latar belakang gelap */
+    --color-link-hover: var(--color-teal-accent); /* Teal Accent untuk hover link */
+    --color-hero-text: var(--color-light-gray); /* Light Gray untuk teks hero utama */
+}
+
+/* ========================================================= */
+/* Gaya Umum dan Global */
+/* ========================================================= */
+body {
+    font-family: 'Inter', sans-serif; /* Font dikembalikan menjadi Inter */
+    margin: 0;
+    padding: 0;
+    padding-top: 60px; /* Ruang untuk fixed header - dikurangi */
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    min-height: 100vh; /* Memastikan body mengisi tinggi viewport */
+    background-color: transparent; /* Menghilangkan warna latar belakang body */
+    background-image: url('https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?cs=srgb&dl=pexels-sohi-807598.jpg&fm=jpg'); /* Gambar background utama yang baru */
+    background-size: cover; /* Memastikan gambar menutupi seluruh area */
+    background-position: center; /* Memusatkan gambar */
+    background-attachment: fixed; /* Memastikan gambar tetap saat menggulir */
+    position: relative; /* Diperlukan untuk penempatan global-overlay */
+}
+
+/* Overlay global yang menutupi seluruh halaman - Dihilangkan agar gambar background terlihat penuh */
+#global-overlay {
+    display: none;
+}
+
+/* Kontainer utama aplikasi harus di atas overlay */
+#appContainer {
+    position: relative;
+    z-index: 2; /* Pastikan semua konten aplikasi berada di atas global-overlay */
+}
+
+/* ========================================================= */
+/* Page Transitions & Animations */
+/* ========================================================= */
+
+.hidden-page {
+    display: none;
+}
+
+/* Base styling for all content pages */
+.content-page-background,
+#mainPage {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Show animation for active pages */
+.content-page-background:not(.hidden-page),
+#mainPage:not(.hidden-page) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for content elements */
+.content-page-background .container > *,
+#mainPage .container > * {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.content-page-background .container > *:nth-child(1) { animation-delay: 0.1s; }
+.content-page-background .container > *:nth-child(2) { animation-delay: 0.2s; }
+.content-page-background .container > *:nth-child(3) { animation-delay: 0.3s; }
+.content-page-background .container > *:nth-child(4) { animation-delay: 0.4s; }
+.content-page-background .container > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* Keyframes for slide-in animation */
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth transitions for cards and interactive elements */
+.transparent-content-card,
+.product-item-card,
+.requirements-nav-card,
+.requirement-product-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced hover effects with smooth transitions */
+.product-item-card:hover {
+    background-color: var(--color-light-gray);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth button transitions */
+button,
+.nav-button-item a,
+.hero-filter-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Loading state animation */
+.loading-fade {
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Breadcrumb smooth transitions */
+nav a {
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Grid items staggered animation */
+.grid > * {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    animation: gridItemFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.grid > *:nth-child(1) { animation-delay: 0.1s; }
+.grid > *:nth-child(2) { animation-delay: 0.2s; }
+.grid > *:nth-child(3) { animation-delay: 0.3s; }
+.grid > *:nth-child(4) { animation-delay: 0.4s; }
+.grid > *:nth-child(5) { animation-delay: 0.5s; }
+.grid > *:nth-child(6) { animation-delay: 0.6s; }
+.grid > *:nth-child(7) { animation-delay: 0.7s; }
+.grid > *:nth-child(8) { animation-delay: 0.8s; }
+.grid > *:nth-child(9) { animation-delay: 0.9s; }
+.grid > *:nth-child(10) { animation-delay: 1.0s; }
+
+@keyframes gridItemFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Hero section special animation */
+#mainPage .hero-background > * {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#mainPage .hero-background > *:nth-child(1) { animation-delay: 0.2s; }
+#mainPage .hero-background > *:nth-child(2) { animation-delay: 0.4s; }
+#mainPage .hero-background > *:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes heroFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth page exit animation */
+.page-exit {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-exit.exiting {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Enhanced dropdown animations */
+.dropdown-content {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.dropdown-content.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Page enter animation class */
+.page-enter {
+    animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading overlay for smooth transitions */
+body.loading-fade {
+    position: relative;
+}
+
+body.loading-fade::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(2px);
+    z-index: 9999;
+    opacity: 0;
+    animation: fadeInOverlay 0.2s ease forwards;
+}
+
+@keyframes fadeInOverlay {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Enhanced card animations */
+.transparent-content-card:hover,
+.requirements-nav-card:hover,
+.requirement-product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Smooth transitions for navigation links */
+.top-nav a,
+.breadcrumb a,
+nav a {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced filter button animations */
+.filter-active,
+.hero-filter-button.active {
+    transform: scale(1.05);
+}
+
+/* Staggered animation for list items */
+ul li,
+.list-disc li {
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideInFromLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+ul li:nth-child(1) { animation-delay: 0.1s; }
+ul li:nth-child(2) { animation-delay: 0.15s; }
+ul li:nth-child(3) { animation-delay: 0.2s; }
+ul li:nth-child(4) { animation-delay: 0.25s; }
+ul li:nth-child(5) { animation-delay: 0.3s; }
+ul li:nth-child(6) { animation-delay: 0.35s; }
+ul li:nth-child(7) { animation-delay: 0.4s; }
+ul li:nth-child(8) { animation-delay: 0.45s; }
+
+@keyframes slideInFromLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ========================================================= */
+/* Gaya Header Navigasi Baru */
+/* ========================================================= */
+.top-nav {
+    background-color: rgba(70, 69, 69, 0.8); /* Dark Gray semi-transparan */
+    backdrop-filter: blur(8px); /* Efek blur untuk latar belakang */
+    color: var(--color-text-light); /* Teks putih */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-start; /* Logo di kiri */
+    align-items: center;
+    position: fixed; /* Header tetap di atas */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100; /* Pastikan di atas elemen lain */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.top-nav .logo a { /* Gaya untuk link logo */
+    font-size: 1.5rem; /* Ukuran logo yang lebih kecil */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-light); /* Teks putih */
+    text-decoration: none; /* Hapus underline default */
+}
+.top-nav .logo img {
+    height: 24px; /* Tinggi logo gambar */
+    margin-right: 8px;
+}
+
+/* ========================================================= */
+/* Gaya Hero Section (Halaman Utama) */
+/* ========================================================= */
+#mainPage {
+    min-height: calc(100vh - 60px); /* Sesuaikan dengan body padding-top yang baru */
+    padding-bottom: 50px; /* Tambahkan padding agar footer terlihat */
+}
+
+.hero-background {
+    position: relative;
+    min-height: calc(100vh - 60px); /* Tinggi viewport minus header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Tengahkan konten secara vertikal */
+    align-items: center;
+    text-align: center;
+    color: var(--color-text-light); /* Teks putih */
+    padding: 20px;
+    z-index: 2; /* Pastikan di atas global-overlay */
+    /* Background image dihapus dari sini agar body background terlihat penuh */
+    background-color: transparent; /* Pastikan hero section transparan */
+}
+
+.hero-overlay { /* Dihilangkan */
+    display: none;
+}
+
+/* Style untuk membuat latar belakang kartu transparan di hero section */
+.transparent-card {
+    background-color: rgba(var(--color-light-bg-rgb), 0.2); /* Light Gray sedikit transparan */
+    color: var(--color-text-light); /* Teks putih */
+}
+
+/* ========================================================= */
+/* Gaya Halaman Konten (Selain Halaman Utama) */
+/* ========================================================= */
+.content-page-background {
+    background-color: rgba(223, 222, 220, 0.7); /* Light Gray semi-transparan */
+    backdrop-filter: blur(8px); /* Efek blur lebih kuat */
+    min-height: calc(100vh - 60px); /* Sesuaikan tinggi agar tidak menutupi footer */
+    padding-bottom: 50px; /* Tambahkan padding agar konten tidak terlalu dekat dengan footer */
+    position: relative; /* Pastikan di atas global-overlay */
+    z-index: 2;
+}
+
+/* Gaya baru untuk kartu di dalam halaman konten */
+.transparent-content-card {
+    background-color: var(--color-light-bg-solid); /* Putih */
+    backdrop-filter: blur(10px); /* Efek blur yang lebih kuat untuk memisahkan dari background halaman */
+}
+
+/* ========================================================= */
+/* Gaya Elemen Spesifik */
+/* ========================================================= */
+.filter-active {
+    background-color: var(--color-accent-button); /* Teal Accent untuk tombol aktif */
+    color: var(--color-text-light); /* Teks putih */
+}
+/* Style untuk tombol filter di hero section */
+.hero-filter-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-text-light);
+    border-radius: 9999px; /* rounded-full */
+    padding: 8px 16px;
+    margin: 0 4px;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    transition: background-color 0.2s ease-in-out;
+}
+.hero-filter-button.active {
+    background-color: var(--color-accent-button); /* Teal Accent */
+    font-weight: 600; /* font-semibold */
+}
+.hero-filter-button:not(.active):hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.product-card-image {
+    width: 100%;
+    height: 100px; /* Fixed height untuk gambar, seperti di gambar contoh */
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
+    border-radius: 8px; /* Sudut membulat untuk gambar */
+    margin-bottom: 8px; /* Mengurangi jarak di bawah gambar */
+}
+
+/* Gaya untuk kartu produk yang seragam dengan gambar contoh */
+.product-item-card {
+    min-height: 180px; /* Tinggi minimum untuk keseragaman, dapat disesuaikan */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Untuk mendorong elemen ke atas/bawah */
+    /* Transisi untuk efek hover */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Enhanced hover effects are now defined in the transitions section above */
+
+/* Enhanced dropdown toggle button with animations */
+.dropdown-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 8px;
+    color: var(--color-text-dark);
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotate(0deg);
+}
+
+.dropdown-toggle-button:hover {
+    background-color: rgba(0, 172, 172, 0.1);
+    transform: rotate(0deg) scale(1.1);
+    color: var(--color-teal-accent);
+}
+
+/* Rotate arrow when dropdown is open - using JavaScript class */
+.dropdown-toggle-button.active {
+    transform: rotate(180deg);
+    background-color: rgba(0, 172, 172, 0.15);
+    color: var(--color-teal-accent);
+}
+
+.dropdown-toggle-button.active:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+
+/* Style untuk membuat footer transparan */
+.transparent-footer {
+    background-color: rgba(70, 69, 69, 0.7); /* Dark Gray semi-transparan */
+    backdrop-filter: blur(8px); /* Efek blur untuk latar belakang */
+    color: var(--color-text-light); /* Teks putih */
+    position: relative; /* Pastikan di atas global-overlay */
+    z-index: 2;
+}
+
+/* Gaya untuk kartu notifikasi pencarian tidak ditemukan */
+#noResultsCard {
+    position: absolute;
+    top: 25%; /* Posisikan sedikit di bawah tengah */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Lebar responsif */
+    max-width: 400px; /* Lebar maksimum */
+    background-color: var(--color-light-bg-solid); /* Putih */
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: var(--color-text-dark); /* Hitam */
+    z-index: 10; /* Pastikan di atas konten lain */
+    opacity: 0; /* Mulai tersembunyi */
+    transition: opacity 0.5s ease-in-out; /* Animasi fade */
+    pointer-events: none; /* Tidak bisa diklik saat tersembunyi */
+}
+#noResultsCard.visible {
+    opacity: 1; /* Tampilkan */
+    pointer-events: auto; /* Bisa diklik saat terlihat */
+}
+
+/* Gaya khusus untuk input pencarian */
+.search-input-field {
+    background-color: rgba(255, 255, 255, 0.9); /* Latar belakang putih semi-transparan */
+    border: none;
+    border-radius: 9999px; /* rounded-full */
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: var(--color-text-dark); /* Hitam */
+    outline: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.search-input-field::placeholder {
+    color: var(--color-medium-gray); /* Abu-abu Sedang */
+}
+
+/* Dropdown styles */
+.dropdown-container {
+    position: relative;
+    flex-grow: 1;
+    padding: 0 8px; /* Adjusted padding */
+}
+
+/* Enhanced searchbar dropdown styling with animations */
+.dropdown-content {
+    position: absolute;
+    background-color: white;
+    min-width: 100%;
+    box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.15);
+    z-index: 100;
+    border-radius: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 8px;
+    left: 0;
+    top: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    
+    /* Initial hidden state with animations */
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    
+    /* Enhanced backdrop blur */
+    backdrop-filter: blur(10px);
+}
+
+.dropdown-content.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Smooth scrollbar for dropdown */
+.dropdown-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Enhanced dropdown item animations */
+.dropdown-item {
+    color: var(--color-text-dark);
+    padding: 14px 18px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 4px 8px;
+    
+    /* Initial state for staggered animation */
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Staggered animation for dropdown items */
+.dropdown-content.show .dropdown-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.dropdown-content.show .dropdown-item:nth-child(1) { transition-delay: 0.05s; }
+.dropdown-content.show .dropdown-item:nth-child(2) { transition-delay: 0.1s; }
+.dropdown-content.show .dropdown-item:nth-child(3) { transition-delay: 0.15s; }
+.dropdown-content.show .dropdown-item:nth-child(4) { transition-delay: 0.2s; }
+.dropdown-content.show .dropdown-item:nth-child(5) { transition-delay: 0.25s; }
+.dropdown-content.show .dropdown-item:nth-child(6) { transition-delay: 0.3s; }
+.dropdown-content.show .dropdown-item:nth-child(7) { transition-delay: 0.35s; }
+.dropdown-content.show .dropdown-item:nth-child(8) { transition-delay: 0.4s; }
+.dropdown-content.show .dropdown-item:nth-child(9) { transition-delay: 0.45s; }
+.dropdown-content.show .dropdown-item:nth-child(10) { transition-delay: 0.5s; }
+
+.dropdown-item:hover {
+    background-color: var(--color-light-gray);
+    transform: translateX(4px) scale(1.02);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced active state */
+.dropdown-item:active {
+    transform: translateX(2px) scale(0.98);
+    transition-duration: 0.1s;
+}
+
+/* Special styling for "Semua negara" and "Semua produk" options */
+.dropdown-item:first-child {
+    font-weight: 600;
+    background-color: rgba(0, 172, 172, 0.05);
+    border: 1px solid rgba(0, 172, 172, 0.2);
+}
+
+.dropdown-item:first-child:hover {
+    background-color: rgba(0, 172, 172, 0.1);
+    border-color: rgba(0, 172, 172, 0.3);
+    transform: translateX(4px) scale(1.02);
+}
+/* Enhanced search input with smooth transitions */
+.search-input-with-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text-dark);
+    padding-right: 0;
+    padding: 12px 16px 12px 16px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input-with-button:focus {
+    background-color: rgba(0, 172, 172, 0.05);
+    transform: scale(1.01);
+}
+
+.search-input-with-button::placeholder {
+    color: var(--color-medium-gray);
+    transition: color 0.3s ease;
+}
+
+.search-input-with-button:focus::placeholder {
+    color: var(--color-teal-accent);
+    opacity: 0.8;
+}
+.search-bar-item {
+    position: relative; /* Essential for positioning dropdowns */
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 4px; /* Reduced horizontal padding */
+}
+.search-bar-item:first-child {
+    padding-left: 16px; /* Restore left padding for the first item */
+}
+.search-bar-item:last-child {
+    padding-right: 16px; /* Restore right padding for the last item */
+}
+
+/* Styling for the main search bar container in hero section */
+#searchBarContainer {
+    background-color: #FFFFFF; /* Diubah menjadi putih solid */
+    backdrop-filter: none; /* Menghilangkan efek blur */
+}
+
+/* Helper for RGB conversion (used in JS to get RGB values for rgba) */
+/* For direct CSS, we use a simple rgba with the direct hex code here */
+
+/* Override the Tailwind rgb values for custom properties */
+[style*="--color-primary-dark-rgb"] {
+    --color-primary-dark-rgb: 70, 69, 69; /* RGB for #464545 */
+}
+[style*="--color-light-bg-rgb"] {
+    --color-light-bg-rgb: 223, 222, 220; /* RGB for #DFDEDC */
+}
+
+/* Gaya untuk kartu gambar produk di halaman persyaratan */
+.requirement-product-card {
+    width: 100%;
+    max-width: 300px; /* Lebar maksimum kartu agar tidak terlalu besar */
+    margin-bottom: 1.5rem; /* Jarak bawah */
+    padding: 1rem; /* Tambahkan padding ke kartu */
+    border-radius: 0.5rem; /* Sudut membulat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan shadow */
+    background-color: var(--color-light-bg-solid); /* Latar belakang putih */
+    display: flex; /* Gunakan flexbox untuk mengatur gambar dan nama */
+    flex-direction: column; /* Tata letak vertikal */
+    align-items: center; /* Pusatkan item secara horizontal */
+}
+.requirement-product-card img {
+    width: 100%;
+    height: 180px; /* Tinggi gambar agar seragam */
+    object-fit: cover;
+    border-radius: 0.5rem; /* rounded-lg */
+    margin-bottom: 1rem; /* Jarak bawah gambar */
+}
+
+/* Styling untuk daftar navigasi persyaratan di kolom kanan */
+.requirements-nav-card {
+    background-color: var(--color-light-bg-solid); /* Latar belakang putih */
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem; /* Jarak bawah */
+    width: 100%;
+    max-width: 300px; /* Sama dengan kartu produk */
+}
+.requirements-nav-card h3 {
+    font-weight: 600; /* font-semibold */
+    font-size: 1.125rem; /* text-lg */
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+}
+.requirements-nav-card ul {
+    list-style: none; /* Hapus bullet point default */
+    padding: 0;
+    margin: 0;
+    line-height: 1.7; /* Jarak antar baris */
+}
+.requirements-nav-card ul li a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    color: var(--color-text-dark);
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.requirements-nav-card ul li a:hover {
+    background-color: var(--color-light-gray);
+    color: var(--color-teal-accent);
+}
+.requirements-nav-card ul li a.active-heading {
+    background-color: var(--color-teal-accent);
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+/* Gaya untuk tombol di dalam daftar navigasi */
+.nav-button-group {
+    border-top: 1px solid var(--color-light-gray); /* Garis pemisah di atas grup tombol */
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.nav-button-item {
+    margin-top: 0.75rem; /* Jarak antar tombol */
+    margin-bottom: 0.75rem; /* Jarak bawah setiap tombol */
+}
+.nav-button-item a {
+    display: block;
+    padding: 0.75rem 1.25rem; /* py-3 px-5 */
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 600; /* font-semibold */
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-decoration: none; /* Pastikan tidak ada underline */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tambah shadow */
+}
+.nav-button-item a.bg-teal-accent-button {
+    background-color: var(--color-accent-button);
+    color: var(--color-text-light);
+}
+.nav-button-item a.bg-red-500-button {
+    background-color: #EF4444; /* Tailwind red-500 */
+    color: var(--color-text-light);
+}
+.nav-button-item a.bg-teal-accent-button:hover {
+    background-color: var(--color-primary-dark); /* Darker on hover */
+    transform: translateY(-2px);
+}
+.nav-button-item a.bg-red-500-button:hover {
+    background-color: #DC2626; /* Darker red on hover */
+    transform: translateY(-2px);
+}
