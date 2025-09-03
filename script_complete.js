@@ -11,7 +11,7 @@
         /* ========================================================= */
         /* Data Aplikasi */
         /* ========================================================= */
-        const exportCountriesData = [
+        const exportCountriesData = [ // Updated with Japan data
             { "negara": "China", "jumlah_produk": 2, "region": "Asia", "nppo_link": "http://www.moa.gov.cn/", "produk_list": [
                 {"nama": "Santan Kelapa", "img": "https://wiratech.co.id/wp-content/uploads/2018/11/cara-membuat-santan-kelapa.png", "persyaratan": `
                     <div id="informasi-umum" class="mb-6">
@@ -615,6 +615,108 @@
                 `
             }
         ]
+    },
+    {
+        "negara": "Jepang",
+        "jumlah_produk": 1,
+        "region": "Asia",
+        "nppo_link": "https://www.maff.go.jp/",
+        "produk_list": [
+            {
+                "nama": "Biji Pala",
+                "img": "https://asset.kompas.com/crops/IH_RV5KbajjARwnu9MUsgds412A=/0x0:1000x667/750x500/data/photo/2020/04/18/5e9b14ab5ec0a.jpg",
+                "persyaratan": `
+                    <div id="informasi-umum" class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-dark);">Informasi Umum</h3>
+                        <p class="text-base mb-4" style="color: var(--color-text-dark);">Jepang melalui MAFF (Ministry of Agriculture, Forestry and Fisheries / NPPO Jepang) dan MHLW (Ministry of Health, Labour and Welfare) memberlakukan standar fitosanitari & keamanan pangan yang ketat.</p>
+                        <p class="text-base mb-4" style="color: var(--color-text-dark);">Produk pala biji harus bebas dari hama OPTK, cemaran (aflatoksin, logam berat, residu pestisida), dan memenuhi aturan labeling pangan impor Jepang.</p>
+                    </div>
+                    <div id="dokumen-wajib" class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-dark);">Dokumen Wajib</h3>
+                        ${formatRequirementsToHtml([
+                            "Phytosanitary Certificate (PC) – diterbitkan Badan Karantina Indonesia (NPPO Indonesia).",
+                            "Commercial Invoice & Packing List – sesuai HS Code pala biji (HS 0908.11 / HS 0908.12 untuk bubuk).",
+                            "Bill of Lading (B/L) atau Air Waybill (AWB).",
+                            "Certificate of Origin (COO/SKA) – Form IJ-EPA (Indonesia–Japan EPA) untuk tarif preferensi 0%.",
+                            "Certificate of Analysis (CoA) – mencakup:",
+                        ])}
+                        <ul class="list-disc list-inside ml-8 space-y-1" style="color: var(--color-text-dark);">
+                            <li>Cemaran mikrobiologi (Salmonella spp., E. coli, Aspergillus spp.)</li>
+                            <li>Aflatoksin total & B1 (harus sesuai batas maksimum MHLW Jepang: ≤ 10 µg/kg total, ≤ 5 µg/kg B1)</li>
+                            <li>Residu pestisida (mengacu pada Positive List System Jepang)</li>
+                            <li>Logam berat (Pb, Cd, Hg, As)</li>
+                        </ul>
+                        <p class="text-base mt-2 ml-8" style="color: var(--color-text-dark);">Kontrak Dagang / Letter of Credit (L/C).</p>
+                        <p class="text-base mt-2 ml-8" style="color: var(--color-text-dark);">(Opsional, tergantung buyer) Fumigation Certificate, Insurance Policy, Halal Certificate.</p>
+                    </div>
+                    <div id="persyaratan-karantina" class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-dark);">Persyaratan Karantina (NPPO Jepang – MAFF)</h3>
+                        ${formatRequirementsToHtml([
+                            "Produk harus bebas dari Organisme Pengganggu Tumbuhan Karantina (OPTK) yang dilarang Jepang.",
+                            "Pemeriksaan karantina di Indonesia oleh Badan Karantina → penerbitan Phytosanitary Certificate.",
+                            "Pemeriksaan di border entry point Jepang oleh MAFF Plant Protection Station.",
+                            "Jika ditemukan hama hidup / cemaran → barang ditolak atau dimusnahkan.",
+                            "Kemasan harus food grade, rapat, dan diberi label jelas."
+                        ])}
+                    </div>
+                    <div id="standar-mutu-label" class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-dark);">Standar Mutu & Label Jepang</h3>
+                        <p class="text-base mb-4" style="color: var(--color-text-dark);">Mengacu pada peraturan Jepang:</p>
+                        ${formatRequirementsToHtml([
+                            "Plant Protection Act (MAFF) – syarat masuk OPTK.",
+                            "Food Sanitation Act (MHLW) – keamanan pangan (aflatoksin, pestisida, logam berat).",
+                            "Act on Standardization and Proper Labeling of Agricultural and Forestry Products (JAS Law) – aturan label pangan.",
+                            "Customs & Tariff Law (Ministry of Finance).",
+                            "Label wajib dalam bahasa Jepang mencantumkan:",
+                        ])}
+                        <ul class="list-disc list-inside ml-8 space-y-1" style="color: var(--color-text-dark);">
+                            <li>Nama produk: ナツメグ (Nutmeg)</li>
+                            <li>Negara asal: インドネシア (Indonesia)</li>
+                            <li>Nama & alamat produsen/eksportir</li>
+                            <li>Nama & alamat importir Jepang</li>
+                            <li>Berat bersih & kotor</li>
+                            <li>Tanggal produksi & kedaluwarsa</li>
+                            <li>Nomor batch/lot</li>
+                            <li>Instruksi penyimpanan</li>
+                        </ul>
+                    </div>
+                    <div id="proses-ekspor" class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-dark);">Proses Ekspor ke Jepang</h3>
+                        ${formatRequirementsToHtml([
+                            "Pemeriksaan & pengujian di Indonesia → CoA + Phytosanitary Certificate.",
+                            "Dokumen ekspor disiapkan (Invoice, COO, B/L, dll.).",
+                            "Pengiriman ke pelabuhan/airport Jepang yang diakui.",
+                            "Border Inspection di Jepang (MAFF & MHLW):",
+                        ])}
+                        <ul class="list-disc list-inside ml-8 space-y-1" style="color: var(--color-text-dark);">
+                            <li>Verifikasi dokumen</li>
+                            <li>Sampling & uji laboratorium (aflatoksin, pestisida, logam berat)</li>
+                            <li>Karantina bila diperlukan</li>
+                        </ul>
+                        <p class="text-base mt-2 ml-8" style="color: var(--color-text-dark);">Produk yang lulus → izin edar & distribusi di Jepang.</p>
+                    </div>
+                    <div id="catatan-penting" class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-dark);">Catatan Penting</h3>
+                        ${formatRequirementsToHtml([
+                            "Tanpa Phytosanitary Certificate → produk otomatis ditolak.",
+                            "Jika ditemukan hama karantina / aflatoksin melebihi batas → barang ditolak atau dimusnahkan.",
+                            "Label tidak menggunakan bahasa Jepang → produk tidak boleh masuk distribusi.",
+                            "MHLW bisa mengeluarkan Inspection Order bila ditemukan risiko."
+                        ])}
+                    </div>
+                    <div id="tips-sukses-ekspor" class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-dark);">Tips Sukses Ekspor</h3>
+                        ${formatRequirementsToHtml([
+                            "Gunakan fumigasi / perlakuan pascapanen untuk mencegah hama hidup.",
+                            "Simpan pala dengan RH < 65% untuk mencegah pertumbuhan jamur penghasil aflatoksin.",
+                            "Cocokkan data HS Code, kontrak dagang, dan label dengan importir Jepang.",
+                            "Pastikan importir di Jepang memiliki izin impor dari MAFF & MHLW.",
+                            "Manfaatkan IJEPA / RCEP untuk tarif 0%."
+                        ])}
+                    </div>
+                `
+            }
+        ]
     }
 ];
 
@@ -742,6 +844,8 @@
                     return 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/255px-Flag_of_Vietnam.svg.png';
                 case 'Belanda':
                     return 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/255px-Flag_of_the_Netherlands.svg.png';
+                case 'Jepang':
+                    return 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/255px-Flag_of_Japan.svg.png';
                 default:
                     // Fallback for other countries using a placeholder
                     const countryCode = countryName.substring(0, 2).toUpperCase(); 
