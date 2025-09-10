@@ -74,7 +74,7 @@
                         ${formatRequirementsToHtml([
                             "Registrasi pabrik di CIFER GACC (wajib).",
                             "Lakukan uji mutu & keamanan pangan â†’ keluarkan CoA.",
-                            "Ajukan pemeriksaan ke Karantina Pertanian Indonesia â†’ terbit PC.",
+                            "Ajukan pemeriksaan ke Badan Karantina Indonesia â†’ terbit PC.",
                             "Lengkapi dokumen ekspor (Invoice, Packing List, COO, B/L, CoA, DoC).",
                             "Pengiriman via designated port China.",
                             "CIQ Inspection di border â†’ pemeriksaan dokumen, sampling, dan uji laboratorium."
